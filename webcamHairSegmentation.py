@@ -1,7 +1,6 @@
 # References:
 # - Mediapipe Hair segmentation model (Not supported in Python due to the custom operations): https://google.github.io/mediapipe/solutions/hair_segmentation
 # - Model used in this example: https://github.com/Kazuhito00/Skin-Clothes-Hair-Segmentation-using-SMP
-# - Read gif from url: https://stackoverflow.com/questions/48163539/how-to-read-gif-from-url-using-opencv-python
 
 import cv2
 import numpy as np
