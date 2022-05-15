@@ -13,7 +13,7 @@ Segment and dye human hair in real time video.
 git clone <url>
 cd <intoClonedFolder>
 pip install -r requirements.txt
-python webcamHair.py
+python webcamHairSegmentation.py
 ```
 
 # References

@@ -6,7 +6,6 @@ import tarfile
 import shutil
 import onnxruntime
 
-from google_drive_downloader import GoogleDriveDownloader as gdd
 from imread_from_url import imread_from_url
 
 
@@ -15,8 +14,7 @@ MODEL_PATH = 'models/hair_segmentation.onnx'
 
 
 class HairSegmentation():
-    def __init__(self, webcam_width, webcam_height):
-        # Initialize model.
+    def __init__(self):
         self.model = self.initialize_model()
 
     def __call__(self, image):

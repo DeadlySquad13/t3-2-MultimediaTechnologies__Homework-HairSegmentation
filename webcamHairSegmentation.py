@@ -27,7 +27,7 @@ cv2.createTrackbar('Dye Weight', windowName, 0, 100, empty)
 
 
 # Inialize hair segmentation model
-hair_segmentation = HairSegmentation(webcam_width, webcam_height)
+hair_segmentation = HairSegmentation()
 
 # Dye image.
 def dye_bgr(image, b, g, r):
@@ -61,12 +61,14 @@ while cap.isOpened():
 
     # Mask our dyed frame (pixels out of mask are black).
     dyed_hair = cv2.bitwise_or(frame, dyed_frame, mask=hair_mask)
+    # Post-process (blur).
+    dyed_hair_blurred = cv2.GaussianBlur(dyed_hair, (7,7), 10)
 
     dye_weight = cv2.getTrackbarPos('Dye Weight', windowName) / 100
     # Overlay initial frame with masked (dyed hair) by formula:
     #   dst = scr1*alpha + scr2*beta + gamma,
     #   where dst = cv.addWeighted(src1, alpha, src2, beta, gamma[, dst[, dtype]])
-    frame_with_dyed_hair = cv2.addWeighted(frame, 1, dyed_hair, dye_weight, 0.0)
+    frame_with_dyed_hair = cv2.addWeighted(frame, 1, dyed_hair_blurred, dye_weight, 0.0)
 
     cv2.imshow(windowName, frame_with_dyed_hair)
     if cv2.waitKey(1) & 0xFF == ord('q'):
